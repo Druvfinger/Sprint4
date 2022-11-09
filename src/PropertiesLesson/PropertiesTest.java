@@ -3,13 +3,16 @@ package PropertiesLesson;
 import javax.swing.*;
 import java.awt.Font;
 import java.io.FileInputStream;
+import java.util.Properties;
 
 public class PropertiesTest extends JFrame {
 
+    private static String pFile = "src/PropertiesLesson/DemoProperties.properties";
+
     public PropertiesTest(){
-        PropertiesTest p = new PropertiesTest();
+        Properties p = new Properties();
         try {
-            p.load(new FileInputStream("src/PropertiesLesson/DemoProperties.properties"));
+            p.load(new FileInputStream(pFile));
         }catch (Exception e){
             e.printStackTrace();
         }
