@@ -2,6 +2,7 @@ package Task15a;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class QueueClass <T extends Number > implements Queue<T> {
 
