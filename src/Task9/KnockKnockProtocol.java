@@ -36,6 +36,8 @@ public class KnockKnockProtocol {
             if (theInput.trim().equalsIgnoreCase("y")) {
                 if (currentRiddle == (NUMRIDDLES - 1)) {
                     currentRiddle = 0;
+                    theOutput = riddles[currentRiddle];
+                    state = SENTRIDDLE;
                 }else {
                     currentRiddle++;
                     theOutput = riddles[currentRiddle];
