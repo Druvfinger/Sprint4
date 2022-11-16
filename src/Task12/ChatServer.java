@@ -7,9 +7,11 @@ public class ChatServer extends Thread {
 
 
     Socket s;
+    Users user;
 
-    ChatServer(Socket s) {
+    ChatServer(Socket s, Users user) {
         this.s = s;
+        this.user = user;
     }
 
     public void run() {
@@ -17,23 +19,14 @@ public class ChatServer extends Thread {
              BufferedReader readFromClient = new BufferedReader(new InputStreamReader(s.getInputStream())); // öppnar upp en kanal
         ) {
 
+            user.addUser(writeToClient);
+
             String messageIn;
-            String messageOut;
-            String username;
 
-            writeToClient.println("Welcome to the chatroom!");
-
-            writeToClient.println("What would you like your username to be?");
-
-            username = readFromClient.readLine();
-            Users user = new Users(username);
-            writeToClient.println("Server: your username is " + user.getUsername() + " feel free to chat");
-
-            while ((messageIn = readFromClient.readLine()) != null){
-                messageOut = user.getUsername() +": " + messageIn;
-                writeToClient.println(messageOut);
-                if (messageIn.equals("EXIT")){
-                    System.exit(0);
+            while (true) {
+                messageIn = readFromClient.readLine();
+                for (PrintWriter writer : user.getUsers()) {
+                    writer.println(messageIn);
                 }
             }
 

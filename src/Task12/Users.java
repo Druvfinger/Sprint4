@@ -1,18 +1,20 @@
 package Task12;
 
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Users {
 
     protected String username;
 
-    public Users(String username) {
-        this.username = username;
+    private static List<PrintWriter> users = new ArrayList<>();
+
+    public void addUser(PrintWriter p) {
+        users.add(p);
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public List<PrintWriter> getUsers() {
+        return users;
     }
 }
